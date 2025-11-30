@@ -13,11 +13,15 @@ import { AttendanceComponent } from './components/pages/attendance/attendance.co
 import { VacanciesComponent } from './components/pages/vacancies/vacancies.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { authGuard } from './guards/auth.guard';
+import { Leaves } from './components/pages/leaves/leaves';
+import { Requests } from './components/pages/requests/requests';
+import { Resignations } from './components/pages/resignations/resignations';
+import { Hrletters } from './components/pages/hrletters/hrletters';
 
 export const routes: Routes = [
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: '',
@@ -26,17 +30,25 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'company-data', component: CompanyDataComponent, children: [
-        {path: 'company-info', component: CompanyInfoComponent},
-        {path: 'departments', component: DepartmentsComponent},
-        {path: 'positions', component: PositionsComponent}
-      ]},
+      {
+        path: 'company-data',
+        component: CompanyDataComponent,
+        children: [
+          { path: 'company-info', component: CompanyInfoComponent },
+          { path: 'departments', component: DepartmentsComponent },
+          { path: 'positions', component: PositionsComponent },
+        ],
+      },
       { path: 'contracts', component: ContractsComponent },
       { path: 'leaves-holidays', component: LeavesHolidaysComponent },
       { path: 'employees-data', component: EmployeesDataComponent },
       { path: 'payroll', component: PayrollComponent },
       { path: 'attendance', component: AttendanceComponent },
-      { path: 'vacancies', component: VacanciesComponent }
-    ]
-  }
+      { path: 'vacancies', component: VacanciesComponent },
+      { path: 'requests', component: Requests },
+      { path: 'requests/leaves', component: Leaves },
+      { path: 'requests/resignations', component: Resignations },
+      { path: 'requests/hrletters', component: Hrletters },
+    ],
+  },
 ];

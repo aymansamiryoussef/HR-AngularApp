@@ -1,4 +1,4 @@
-@import '../shared/page-styles.css';
+/* @import '../shared/page-styles.css'; */
 
 .list-group-item {
   cursor: pointer;
@@ -13,5 +13,3 @@
 .list-group-item:hover:not(.active) {
   background-color: #f8f9fa;
 }
-
-
