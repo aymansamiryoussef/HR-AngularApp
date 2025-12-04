@@ -1,3 +1,4 @@
+/*
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -294,3 +295,5 @@ export class CompanyInfoComponent implements OnInit {
 }
 
 
+
+*/
