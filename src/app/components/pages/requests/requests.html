@@ -33,7 +33,7 @@
                     <td>
                         @if(r.status == "Pending")
                         {
-                        <a class="request-action-btn edit" routerLink="/requests/leaves">View</a>
+                        <a class="request-action-btn edit" [routerLink]="['/requests/view', r.id, r.type]">View</a>
                         <a class="request-action-btn cancel" routerLink="/requests/resignations">Cancel</a>
                         }
                         @else {

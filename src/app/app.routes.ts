@@ -17,6 +17,7 @@ import { Leaves } from './components/pages/leaves/leaves';
 import { Requests } from './components/pages/requests/requests';
 import { Resignations } from './components/pages/resignations/resignations';
 import { Hrletters } from './components/pages/hrletters/hrletters';
+import { ViewRequest } from './view-request/view-request';
 
 export const routes: Routes = [
   {
@@ -49,6 +50,7 @@ export const routes: Routes = [
       { path: 'requests/leaves', component: Leaves },
       { path: 'requests/resignations', component: Resignations },
       { path: 'requests/hrletters', component: Hrletters },
+      { path: 'requests/view/:id/:type', component: ViewRequest },
     ],
   },
 ];

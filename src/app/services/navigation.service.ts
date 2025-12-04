@@ -28,6 +28,7 @@ export class NavigationService {
     '/requests/leaves': 'Leaves',
     '/requests/resignations': 'Resignations',
     '/requests/hrletters': 'HR Letters',
+    '/requests/view/:id': 'View Request',
   };
 
   constructor(private router: Router) {

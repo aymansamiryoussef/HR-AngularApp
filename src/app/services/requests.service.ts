@@ -34,6 +34,14 @@ export class RequestsService {
       result: LeaveRequest[];
     }>(`${this.baseLeaveUrl}`);
   }
+
+  getLeaveRequestById(id: number) {
+    return this.http.get<{
+      errorMessage: string | null;
+      haveError: boolean;
+      result: LeaveRequest;
+    }>(`${this.baseLeaveUrl}/${id}`);
+  }
   // HR Letter Requests
   createHRLetterRequest(body: any) {
     return this.http.post(`${this.baseHRLetterUrl}`, body);
@@ -44,6 +52,13 @@ export class RequestsService {
       haveError: boolean;
       result: HRLetter[];
     }>(`${this.baseHRLetterUrl}`);
+  }
+  getHRLetterRequestById(id: number) {
+    return this.http.get<{
+      errorMessage: string | null;
+      haveError: boolean;
+      result: HRLetter;
+    }>(`${this.baseHRLetterUrl}/${id}`);
   }
 
   // Resignation Requests
@@ -56,5 +71,12 @@ export class RequestsService {
       haveError: boolean;
       result: ResignationRequest[];
     }>(`${this.baseResignationUrl}`);
+  }
+  getResignationRequestById(id: number) {
+    return this.http.get<{
+      errorMessage: string | null;
+      haveError: boolean;
+      result: ResignationRequest;
+    }>(`${this.baseResignationUrl}/${id}`);
   }
 }

@@ -7,4 +7,5 @@ export interface ResignationRequest {
   createdOn: string;
   firstApproveId: number;
   secondApproveId: number | null;
+  createdBy: string;
 }

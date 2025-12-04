@@ -14,8 +14,6 @@ import { Employee, Person, UserTemp } from '../../../services/userTemp.service';
 })
 export class Requests implements OnInit {
   allRequests: RequestTableItem[] = [];
-  leaves: LeaveRequest[] = [];
-  resignations: ResignationRequest[] = [];
   employee: Employee | null = null;
   person: Person | null = null;
   constructor(private requestsService: RequestsService, private userService: UserTemp) {}
@@ -30,10 +28,7 @@ export class Requests implements OnInit {
     this.userService.getUserData().subscribe((data) => {
       this.employee = data.employee;
       this.person = data.person;
-
-      console.log(this.employee);
       this.loadRequests(StatusMap);
-      console.log(this.allRequests);
     });
   }
 
@@ -46,7 +41,6 @@ export class Requests implements OnInit {
   loadRequests(StatusMap: any) {
     this.requestsService.GetRequestsByEmployeeID(6).subscribe({
       next: (req) => {
-        console.log('API Response:', req);
         this.allRequests = req.result.map((r) => ({
           id: r.id,
           type: r.type,
@@ -58,50 +52,4 @@ export class Requests implements OnInit {
       error: (err) => console.error('Leave request error', err),
     });
   }
-
-  //   // Leave requests
-  //   this.requestsService.getAllLeaveRequests().subscribe({
-  //     next: (leave) => {
-  //       const leaveRequests: RequestTableItem[] = leave.result.map((l) => ({
-  //         id: l.id,
-  //         employee: this.person?.fullName || '',
-  //         type: 'Leave',
-  //         submittedOnDate: l.createdOn,
-  //         status: StatusMap[l.status],
-  //       }));
-  //       this.allRequests.push(...leaveRequests);
-  //     },
-  //     error: (err) => console.error('Leave request error', err),
-  //   });
-
-  //   // Resignation requests
-  //   this.requestsService.getAllResignationRequest().subscribe({
-  //     next: (res) => {
-  //       const resignationRequests: RequestTableItem[] = res.result.map((r) => ({
-  //         id: r.id,
-  //         employee: this.person?.fullName || '',
-  //         type: 'Resignation',
-  //         submittedOnDate: r.createdOn,
-  //         status: StatusMap[r.status],
-  //       }));
-  //       this.allRequests.push(...resignationRequests);
-  //     },
-  //     error: (err) => console.error('Resignation request error', err),
-  //   });
-
-  //   // HR letter requests
-  //   this.requestsService.getAllHRLetterRequests().subscribe({
-  //     next: (res) => {
-  //       const hrLetterRequests: RequestTableItem[] = res.result.map((h) => ({
-  //         id: h.id,
-  //         employee: this.person?.fullName || '',
-  //         type: 'HR Letter',
-  //         submittedOnDate: h.createdOn,
-  //         status: StatusMap[h.status],
-  //       }));
-  //       this.allRequests.push(...hrLetterRequests);
-  //     },
-  //     error: (err) => console.error('HR letter request error', err),
-  //   });
-  // }
 }
