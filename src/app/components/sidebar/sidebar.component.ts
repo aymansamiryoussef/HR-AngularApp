@@ -21,7 +21,7 @@ interface MenuItem {
 export class SidebarComponent implements OnChanges {
   @Input() collapsed: boolean = false;
   expandedComponents: Record<string, boolean> = {};
-  role: string = '';
+  roles: string[] = [];
 
   menuItems: MenuItem[] = [
     {
@@ -109,7 +109,7 @@ export class SidebarComponent implements OnChanges {
   ];
 
   constructor(private authService: AuthService) {
-    this.role = this.authService.getUserRole() || '';
+    this.roles = this.authService.getUserRoles() || [];
     // this.menuItems = this.filterMenuItems(this.menuItems);
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -119,10 +119,12 @@ export class SidebarComponent implements OnChanges {
   }
   filterMenuItems(items: MenuItem[]) {
     return items
-      .filter((item) => !item.allowedRoles || item.allowedRoles.includes(this.role))
+      .filter((item) => !item.allowedRoles || item.allowedRoles.some((r) => this.roles.includes(r)))
       .map((item) => {
         const newItem = { ...item };
-        if (item.children) newItem.children = this.filterMenuItems(item.children);
+        if (item.children) {
+          newItem.children = this.filterMenuItems(item.children);
+        }
         return newItem;
       });
   }
