@@ -69,6 +69,12 @@ export class SidebarComponent implements OnChanges {
       allowedRoles: ['Admin', 'HR'],
     },
     {
+      label: 'Requests',
+      route: '/requests',
+      icon: 'bi bi-envelope',
+      allowedRoles: ['Admin', 'HR'],
+    },
+    {
       label: 'Employees Data',
       route: '/employees-data',
       icon: 'bi bi-people',
