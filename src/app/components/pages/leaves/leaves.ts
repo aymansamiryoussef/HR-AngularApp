@@ -56,6 +56,7 @@ export class Leaves implements OnInit {
     const payload = {
       requestedById: Number(formValue.requestedById),
       startDate: formValue.startDate?.trim() === '' ? null : formValue.startDate,
+      numberOfDays: formValue.numberOfDays,
       leaveType: Number(formValue.leaveType),
       reason: formValue.reason,
       attachment: formValue.attachment?.trim() === '' ? null : formValue.attachment,
