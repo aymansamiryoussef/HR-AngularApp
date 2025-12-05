@@ -2,7 +2,6 @@ import { Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 import { DashboardComponent } from './components/pages/dashboard/dashboard.component';
 import { CompanyDataComponent } from './components/pages/company-data/company-data.component';
-import { CompanyInfoComponent } from './components/pages/company-info/company-info.component';
 import { DepartmentsComponent } from './components/pages/departments/departments.component';
 import { PositionsComponent } from './components/pages/positions/positions.component';
 import { LeavesHolidaysComponent } from './components/pages/leaves-holidays/leaves-holidays.component';
@@ -18,6 +17,11 @@ import { Requests } from './components/pages/requests/requests';
 import { Resignations } from './components/pages/resignations/resignations';
 import { Hrletters } from './components/pages/hrletters/hrletters';
 import { ViewRequest } from './view-request/view-request';
+import { CreateContractComponent } from './components/pages/contracts/create.contract/create-contract';
+import { ViewContractComponent } from './components/pages/contracts/contract.view/contract.view';
+import { EditContractComponent } from './components/pages/contracts/contract.edit/contract.edit';
+import { EmployeeComponent } from './components/pages/employee-component/employee-component';
+import { CompanyInfoComponent } from './components/pages/company-info/company-info.component';
 
 export const routes: Routes = [
   {
@@ -41,8 +45,15 @@ export const routes: Routes = [
         ],
       },
       { path: 'contracts', component: ContractsComponent },
+      { path: 'contracts/create', component: CreateContractComponent },
+      { path: 'contracts/view/:id', component: ViewContractComponent },
+      { path: 'contracts/edit/:id', component: EditContractComponent },
       { path: 'leaves-holidays', component: LeavesHolidaysComponent },
-      { path: 'employees-data', component: EmployeesDataComponent },
+      {
+        path: 'employees-data',
+        component: EmployeesDataComponent,
+        children: [{ path: 'employees', component: EmployeeComponent }],
+      },
       { path: 'payroll', component: PayrollComponent },
       { path: 'attendance', component: AttendanceComponent },
       { path: 'vacancies', component: VacanciesComponent },
