@@ -118,7 +118,7 @@ onStatusChange(): void {
       )
       .subscribe(updatedApplication => {
         if (updatedApplication) {
-          this.applicationId = updatedApplication.ID;
+          this.applicationId = updatedApplication.id;
          
           
           

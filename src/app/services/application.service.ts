@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { HttpHeaders } from '@angular/common/http';
 
 // Enums matching backend
 export enum ApplicationStatus {
@@ -126,8 +127,14 @@ export class ApplicationService {
   deleteApplication(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
-  updateStatus(id: number, status: string): Observable<any> {
-  return this.http.patch(`${this.apiUrl}/${id}/status`, { status });
+updateStatus(id: number, status: string): Observable<ApplicationDto> {
+  return this.http.patch<ApplicationDto>(
+    `${this.apiUrl}/${id}/status`, 
+    status,  // ✅ بدون JSON.stringify
+    {
+      headers: { 'Content-Type': 'application/json' }
+    }
+  );
 }
 
   // دالة مساعدة لتحويل string إلى ApplicationSource enum

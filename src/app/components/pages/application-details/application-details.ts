@@ -101,10 +101,19 @@ export class ApplicationDetails implements OnInit, OnDestroy {
    // ✅ اطبع كل التفاصيل
           console.error('Full Error Response:', err.error);
           console.error('Validation Errors:', err.error?.errors);
-          console.error('Error Title:', err.error?.title);
+          console.error('Error Title:', err.error?.title); 
+          
           
           // ✅ اعرض رسالة أوضح
           const validationErrors = err.error?.errors;
+
+  
+  // ✅ اطبع كل error لوحده
+  if (validationErrors) {
+    console.log('$ errors:', validationErrors.$);
+    console.log('status errors:', validationErrors.status);
+  }
+  
           let errorMessage = 'Failed to update status';          this.error = err.error?.message || err.message || 'Failed to update status';
           this.statusControl.setValue(this.currentStatus, { emitEvent: false });
           return of(null);
