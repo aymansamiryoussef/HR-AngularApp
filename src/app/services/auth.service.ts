@@ -20,12 +20,13 @@ export interface LoginResponse {
 })
 export class AuthService {
   private readonly API_URL = `${environment.webApiURL}/api/Account`;
-  private _isAuthenticated = signal<boolean>(false);
-  private _token = signal<string | null>(null);
-  private _currentUser = signal<LoginResponse['user'] | null>(null);
 
   isAuthenticated: boolean = false;
-  currentUser: LoginResponse | null = null;
+  currentUser: {
+    userName: string;
+    imagepath: string
+    roles: string[];
+  } | null = null;
   token: string | null = null;
 
   constructor(private http: HttpClient, private router: Router) {
@@ -45,14 +46,14 @@ export class AuthService {
     }
   }
   getUserRoles(): string[] | null {
-    return this.currentUser ? this.currentUser.user.roles : null;
+    return this.currentUser ? this.currentUser.roles : null;
   }
 
   getUserName(): string | null {
-    return this.currentUser ? this.currentUser.user.userName : null;
+    return this.currentUser ? this.currentUser.userName : null;
   }
   getUserImage(): string | null {
-    return this.currentUser ? `${environment.webApiURL}/Files/${this.currentUser.user.imagepath}` : null;
+    return this.currentUser ? `${environment.webApiURL}/Files/${this.currentUser.imagepath}` : null;
   }
   login(credentials: LoginRequest) {
     return this.http.post<LoginResponse>(`${this.API_URL}/login`, credentials);
