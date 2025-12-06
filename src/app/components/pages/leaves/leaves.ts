@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RequestsService } from '../../../services/requests.service';
-import { LeaveTypes } from '../../../services/leaveType.service';
+import { LeaveTypeService } from '../../../services/leaveType.service';
 
 @Component({
   selector: 'app-leaves',
@@ -20,7 +20,7 @@ export class Leaves implements OnInit {
   constructor(
     private fb: FormBuilder,
     private service: RequestsService,
-    private leaveService: LeaveTypes
+    private leaveService: LeaveTypeService
   ) {
     this.form = this.fb.group({
       requestedById: [6], // will get from auth later
@@ -35,7 +35,7 @@ export class Leaves implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.leaveService.getAllLeaveTypes().subscribe((type) => {
+    this.leaveService.getAll().subscribe((type) => {
       const names = type.map((t) => ({ id: t.id, name: t.name }));
       this.leaveTypes = names;
     });
