@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RequestsService } from '../../../services/requests.service';
-import { LeaveTypeService } from '../../../services/leaveType.service';
+import { LeaveTypeService } from '../../../services/leavetype.service';
+
 
 @Component({
   selector: 'app-leaves',

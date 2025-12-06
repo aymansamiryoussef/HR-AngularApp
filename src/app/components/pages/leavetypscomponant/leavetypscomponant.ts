@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { LeaveType, LeaveTypeCreateDto, LeaveTypeUpdateDto } from '../../../interfaces/leavetypes.interface';
-import { LeaveTypeService } from '../../../services/leaveType.service';
+import { LeaveTypeService } from '../../../services/leavetype.service';
 
 @Component({
   selector: 'app-leave-type',
