@@ -4,35 +4,28 @@ import { Router } from '@angular/router';
 import { LoginRequest } from '../interfaces/login.interface';
 import { environment } from '../../environments/environment.development';
 
-
-
 export interface LoginResponse {
   user: {
     userName: string;
-    imagepath: string
+    imagepath: string;
     roles: string[];
-  }
+  };
   token: string;
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private readonly API_URL = `${environment.webApiURL}/api/Account`;
 
   isAuthenticated: boolean = false;
-  currentUser: {
-    userName: string;
-    imagepath: string
-    roles: string[];
-  } | null = null;
+  currentUser: { userName: string; imagepath: string | null; roles: string[] } | null = null;
   token: string | null = null;
 
   constructor(private http: HttpClient, private router: Router) {
     this.checkStoredAuth();
   }
-
 
   private checkStoredAuth(): void {
     const token = localStorage.getItem('authToken') || sessionStorage.getItem('authToken');
@@ -59,12 +52,12 @@ export class AuthService {
     return this.http.post<LoginResponse>(`${this.API_URL}/login`, credentials);
   }
   setCredentials(credentials: LoginResponse, rememberMe: boolean = false) {
+    debugger;
     const storage = rememberMe ? localStorage : sessionStorage;
     storage.setItem('authToken', credentials.token);
     storage.setItem('currentUser', JSON.stringify(credentials.user));
     this.checkStoredAuth();
   }
-
 
   register(registerData: FormData) {
     return this.http.post(`${environment.webApiURL}/api/Applicant/Register`, registerData);
@@ -83,4 +76,3 @@ export class AuthService {
     sessionStorage.removeItem('currentUser');
   }
 }
-
